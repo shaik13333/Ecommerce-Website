@@ -1,0 +1,66 @@
+/* Container Styling */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Card Item Styling */
+.cart-item {
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 8px;
+}
+
+.cart-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    height: 150px;
+    width: auto;
+    object-fit: contain;
+    padding: 10px;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.card-price {
+    font-size: 1.25rem;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Total Section Styling */
+.total-section {
+    margin-top: 2rem;
+}
+
+.total-section h2 {
+    color: #28a745;
+    margin-bottom: 1rem;
+}
+
+/* Purchase Button Styling */
+.purchase-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.purchase-btn:hover {
+    background-color: #0056b3;
+}
+#cardsCont{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}

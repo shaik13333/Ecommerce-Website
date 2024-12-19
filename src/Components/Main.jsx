@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Mainpage() {
 
     let [product, setProduct] = useState([]);
     let [search, setSearch] = useState('');
     let [count, setCount] = useState(0);
+    let[cart, setCart] = useState([]);
+    let[price, setPrice] = useState(0);
+    let navigate = useNavigate("");
 
     // Handle adding to cart
-    function adding() {
+    function addToCart(product) {
         setCount(prevCount => prevCount + 1); // Use functional update to avoid direct mutation
+        setCart([...cart, product]);
+        setPrice(price+=product.price)
     }
 
     // Fetch products from API on component mount
@@ -24,6 +29,8 @@ export default function Mainpage() {
         setSearch(e.target.value);
     }
 
+   
+
     return (
         <>
             <nav id='nav-bar'>
@@ -31,7 +38,8 @@ export default function Mainpage() {
                 <ul>
                     <li><Link to="/signinpage"><button className='navbtn'><b>Sign up</b></button></Link></li>
                     <li><Link to="/loginpage"><button className='navbtn'><b>Log in</b></button></Link></li>
-                    <li><button className='navbtn'><i className="fa-solid fa-cart-shopping"></i><b> Add to Cart: {count}</b></button></li>
+                    <li><button className='navbtn'  onClick={() => navigate("/cart", { state: { cart,price } })}
+                    ><i className="fa-solid fa-cart-shopping" ></i><b> Cart: {count}</b></button></li>
                 </ul>
             </nav>
             <br /><br /><br />
@@ -63,7 +71,7 @@ export default function Mainpage() {
                                     <p>{data.title}</p>
                                     <p>Price: ${data.price}</p> <br />
 
-                                    <button id='btn1' className='shopbtns' onClick={adding}>Add to Cart</button>
+                                    <button id='btn1' className='shopbtns' onClick={()=>addToCart(data)}>Add to Cart</button>
                                     <button id='btn2' className='shopbtns'>Buy Now</button>
                                 </div>
                             </div>
